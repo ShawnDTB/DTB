@@ -52,3 +52,10 @@ npm run dev
 ```bash
 npm run deploy
 ```
+
+
+## Large video asset note
+
+Cloudflare Workers static assets have a 25 MiB per-file limit. The original `Empowering-our-clients.mp4` file was about 86 MiB, so it was removed from this deployable Worker package. Host that video externally through Cloudflare R2, Stream, YouTube/Vimeo, or another storage URL, then replace the project button/link in `public/works/index.html` with that URL.
+
+The build script also skips any future files over 25 MiB so `wrangler deploy` will not fail for the same reason.
