@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact DTB | Get a Free Web Design & Automation Quote{% endblock %}
+{% block meta_description %}Contact DTB Solutions for a free consultation. Get expert web design, AI automation and marketing services. Let's discuss your project and create a custom solution for your business.{% endblock %}
+{% block meta_keywords %}web design quote, automation consultation, free web design consultation, custom web development inquiry, business automation quote{% endblock %}
+{% block canonical_url %}https://dtbsolutions.tech/contact/{% endblock %}
+
+{% block content %}
+
+<!-- Tech Icons Library -->
+{% include 'components/tech_icons.html' %}
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-charcoal to-slate py-20 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+            <h1 class="text-5xl md:text-6xl font-poppins font-bold mb-6 leading-tight">
+                Let's Talk <span class="text-accent">Growth</span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                Ready to discuss your project? We're here to help. Fill out the form below and we'll get back to you within 24 hours.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-20 md:py-32 relative" style="background-color: #09050352;">
+    <!-- Animated Background -->
+    {% include 'components/animated_bg.html' %}
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+            <!-- Contact Info -->
+            <div>
+                <h2 class="text-2xl font-poppins font-bold mb-8">Get in Touch</h2>
+
+                <div class="space-y-8">
+                    <!-- Email -->
+                    <div>
+                        <h3 class="font-poppins font-bold text-accent mb-2">Email</h3>
+                        <a href="mailto:inquire@dtbsolutions.tech" class="text-gray-300 hover:text-accent transition">
+                            inquire@dtbsolutions.tech
+                        </a>
+                    </div>
+
+                    <!-- Response Time -->
+                    <div>
+                        <h3 class="font-poppins font-bold text-accent mb-2">Response Time</h3>
+                        <p class="text-gray-300">
+                            We typically respond within 24 hours. For urgent matters, call us.
+                        </p>
+                    </div>
+
+                    <!-- Availability -->
+                    <div>
+                        <h3 class="font-poppins font-bold text-accent mb-2">Availability</h3>
+                        <p class="text-gray-300">
+                            Monday – Friday<br>
+                            9:00 AM – 6:00 PM EST
+                        </p>
+                    </div>
+
+                    <!-- Social -->
+                    <div>
+                        <h3 class="font-poppins font-bold text-accent mb-4">Follow Us</h3>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-gray-400 hover:text-accent transition">Twitter</a>
+                            <a href="#" class="text-gray-400 hover:text-accent transition">LinkedIn</a>
+                            <a href="#" class="text-gray-400 hover:text-accent transition">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="lg:col-span-2">
+                <!-- Success Message -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="mb-6 p-4 bg-green-900/20 border border-green-500 rounded-md text-green-300">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="POST" class="space-y-6">
+                    {% csrf_token %}
+
+                    <!-- Name -->
+                    <div>
+                        <label for="{{ form.name.id_for_label }}" class="block text-sm font-poppins font-bold mb-2">Name</label>
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                            <p class="text-red-400 text-sm mt-1">{{ form.name.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="{{ form.email.id_for_label }}" class="block text-sm font-poppins font-bold mb-2">Email</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <p class="text-red-400 text-sm mt-1">{{ form.email.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Company -->
+                    <div>
+                        <label for="{{ form.company.id_for_label }}" class="block text-sm font-poppins font-bold mb-2">Company</label>
+                        {{ form.company }}
+                        {% if form.company.errors %}
+                            <p class="text-red-400 text-sm mt-1">{{ form.company.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Service Interest -->
+                    <div>
+                        <label for="{{ form.service.id_for_label }}" class="block text-sm font-poppins font-bold mb-2">What service are you interested in?</label>
+                        {{ form.service }}
+                        {% if form.service.errors %}
+                            <p class="text-red-400 text-sm mt-1">{{ form.service.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Budget -->
+                    <div>
+                        <label for="{{ form.budget.id_for_label }}" class="block text-sm font-poppins font-bold mb-2">Budget Range</label>
+                        {{ form.budget }}
+                        {% if form.budget.errors %}
+                            <p class="text-red-400 text-sm mt-1">{{ form.budget.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Message -->
+                    <div>
+                        <label for="{{ form.message.id_for_label }}" class="block text-sm font-poppins font-bold mb-2">Tell us about your project</label>
+                        {{ form.message }}
+                        {% if form.message.errors %}
+                            <p class="text-red-400 text-sm mt-1">{{ form.message.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button
+                        type="submit"
+                        class="w-full bg-accent text-charcoal px-6 py-3 rounded-md font-bold font-poppins hover:shadow-lg hover:shadow-accent/50 transition duration-200"
+                    >
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-20 md:py-32 bg-slate">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-poppins font-bold mb-16 text-center">Frequently Asked Questions</h2>
+
+        <div class="space-y-6">
+            <!-- FAQ 1 -->
+            <div class="bg-charcoal p-6 rounded-lg border border-graphite">
+                <h3 class="font-poppins font-bold text-lg text-accent mb-2">How long does a typical project take?</h3>
+                <p class="text-gray-300">
+                    Most projects take 4-8 weeks from discovery to launch. Smaller projects can be completed in 2-3 weeks, while larger enterprise solutions may take 3-6 months.
+                </p>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="bg-charcoal p-6 rounded-lg border border-graphite">
+                <h3 class="font-poppins font-bold text-lg text-accent mb-2">What's your process?</h3>
+                <p class="text-gray-300">
+                    We follow a proven 4-step process: Discovery (understand your goals), Strategy (create a roadmap), Execution (build with precision) and Launch & Support (go live with confidence).
+                </p>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="bg-charcoal p-6 rounded-lg border border-graphite">
+                <h3 class="font-poppins font-bold text-lg text-accent mb-2">Do you offer ongoing support?</h3>
+                <p class="text-gray-300">
+                    Yes! All projects include 30 days of post-launch support. We also offer retainer packages for ongoing maintenance, updates and optimization.
+                </p>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="bg-charcoal p-6 rounded-lg border border-graphite">
+                <h3 class="font-poppins font-bold text-lg text-accent mb-2">What if I'm not sure what I need?</h3>
+                <p class="text-gray-300">
+                    That's perfectly fine! We offer free 20-minute consultations to discuss your goals and recommend the best approach. No pressure, no sales pitch.
+                </p>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="bg-charcoal p-6 rounded-lg border border-graphite">
+                <h3 class="font-poppins font-bold text-lg text-accent mb-2">Can you work with my existing team?</h3>
+                <p class="text-gray-300">
+                    Absolutely! We're experienced in white-label delivery and can integrate seamlessly with your existing team or agency.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="bg-gradient-to-r from-accent to-accent-dark py-20 md:py-32">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-6 text-charcoal">
+            Ready to get started?
+        </h2>
+        <p class="text-lg text-charcoal/80 mb-8">
+            Fill out the form above or schedule a free 20-minute consultation.
+        </p>
+        <a href="#" class="inline-block bg-charcoal text-accent px-8 py-3 rounded-md font-bold font-poppins hover:shadow-lg transition duration-200">
+            Schedule a Call
+        </a>
+    </div>
+</section>
+
+{% endblock %}
