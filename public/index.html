@@ -164,10 +164,12 @@
         <!-- Desktop Layout -->
         <div class="hidden md:flex justify-between items-center">
             <!-- Logo -->
-            <a href="/" class="flex items-center gap-2">
-                <div class="text-accent font-poppins font-bold text-2xl px-4 py-2">
-                    Designed To Breakthrough
-                </div>
+            <a href="/" class="flex items-center gap-2" aria-label="Designed To Breakthrough Home">
+                <img
+                    src="/images/dtb-logo-transparent-full.png"
+                    alt="Designed To Breakthrough"
+                    class="dtb-header-logo"
+                />
             </a>
 
             <!-- Desktop Navigation -->
@@ -192,10 +194,12 @@
         <!-- Mobile Layout -->
         <div class="md:hidden flex justify-center items-center">
             <!-- Centered Logo -->
-            <a href="/" class="flex items-center gap-2">
-                <div class="mobile-logo-text text-accent font-poppins font-bold text-2xl px-4 py-2" style="font-size: 33px; position: relative; top: 15px; background-color: #00000085;">
-                    Designed To Breakthrough
-                </div>
+            <a href="/" class="flex items-center gap-2" aria-label="Designed To Breakthrough Home">
+                <img
+                    src="/images/dtb-logo-transparent-full.png"
+                    alt="Designed To Breakthrough"
+                    class="dtb-header-logo dtb-mobile-logo"
+                />
             </a>
 
             <!-- Mobile Menu Button (Fixed positioned to top right) -->
@@ -224,11 +228,34 @@
 </nav>
 
 <style>
-    /* Mobile logo adjustments for very small screens */
+    .dtb-header-logo {
+        display: block;
+        width: clamp(225px, 16.5vw, 295px);
+        height: auto;
+        max-height: 56px;
+        object-fit: contain;
+        filter: drop-shadow(0 0 4px rgba(255, 159, 26, 0.08));
+    }
+
+    .dtb-mobile-logo {
+        width: min(76vw, 260px);
+        max-height: 52px;
+        position: relative;
+        top: 11px;
+        filter: drop-shadow(0 0 3px rgba(255, 159, 26, 0.08));
+    }
+
+    @media (min-width: 768px) {
+        nav .max-w-7xl > .hidden.md\:flex {
+            gap: 44px;
+        }
+    }
+
     @media (max-width: 500px) {
-        .mobile-logo-text {
-            font-size: 19px !important;
-            top: 19px !important;
+        .dtb-mobile-logo {
+            width: min(74vw, 235px);
+            max-height: 48px;
+            top: 14px;
         }
     }
 </style>
