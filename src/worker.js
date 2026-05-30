@@ -59,7 +59,7 @@ async function handleContact(request, env) {
     }
 
     const toEmail = env.CONTACT_TO_EMAIL || "inquire@dtbsolutions.tech";
-    const fromEmail = env.CONTACT_FROM_EMAIL || "Website Contact <inquire@send.dtbsolutions.tech>";
+    const fromEmail = env.CONTACT_FROM_EMAIL || "Website Contact <inquire@dtbsolutions.tech>";
 
     const emailText = [
       "New DTB contact form submission",
@@ -124,7 +124,7 @@ async function handleNewsletter(request, env) {
     }
 
     const toEmail = env.CONTACT_TO_EMAIL || "inquire@dtbsolutions.tech";
-    const fromEmail = env.CONTACT_FROM_EMAIL || "Website Contact <inquire@send.dtbsolutions.tech>";
+    const fromEmail = env.CONTACT_FROM_EMAIL || "Website Contact <inquire@dtbsolutions.tech>";
 
     const resendResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -181,6 +181,14 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const pathname = normalizePath(url.pathname);
+
+    if (request.method === "GET" && pathname === "/api/contact") {
+      return redirectTo(request, "/contact/");
+    }
+
+    if (request.method === "GET" && pathname === "/api/newsletter") {
+      return redirectTo(request, "/blog/");
+    }
 
     if (
       request.method === "POST" &&

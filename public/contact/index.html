@@ -950,8 +950,8 @@
 
             <!-- Contact Form -->
             <div class="lg:col-span-2">
-                <!-- Success Message -->
-                
+                <!-- Success / Error Message -->
+                <div id="contactFormStatus" class="hidden mb-6 p-4 rounded-lg border text-sm leading-relaxed"></div>
 
                 <form method="POST" action="/api/contact" id="contactForm" class="space-y-6">
 <!-- Name -->
@@ -1158,5 +1158,30 @@
 </footer>
 
 <script src="/assets/site.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const statusBox = document.getElementById("contactFormStatus");
+    if (!statusBox) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const sent = params.get("sent");
+    const error = params.get("error");
+    const resend = params.get("resend");
+
+    if (sent === "1") {
+      statusBox.className = "mb-6 p-4 rounded-lg border border-accent bg-accent/10 text-accent text-sm leading-relaxed";
+      statusBox.innerHTML = "<strong>Message sent.</strong> Thank you for reaching out. DTB will review your inquiry and follow up soon.";
+      return;
+    }
+
+    if (error) {
+      statusBox.className = "mb-6 p-4 rounded-lg border border-red-500/50 bg-red-500/10 text-red-200 text-sm leading-relaxed";
+      const extra = resend ? "<br><span class='text-xs text-red-200/80'>Provider note: " + resend.replace(/[<>]/g, "") + "</span>" : "";
+      statusBox.innerHTML = "<strong>Message not sent.</strong> " + error.replace(/[<>]/g, "") + extra;
+    }
+  });
+</script>
+
 </body>
 </html>
