@@ -23,6 +23,27 @@
     <!-- Tech Backgrounds -->
     <!-- Tech Background Patterns -->
 <style>
+
+  .project-shot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transform: scale(1.01);
+    transition: transform 350ms ease, filter 350ms ease;
+    filter: saturate(0.96) contrast(1.03) brightness(0.88);
+  }
+
+  .project-card:hover .project-shot {
+    transform: scale(1.055);
+    filter: saturate(1.06) contrast(1.08) brightness(0.72);
+  }
+
+  .project-shot-frame {
+    border: 1px solid rgba(255, 159, 26, 0.16);
+    background: linear-gradient(135deg, rgba(255,159,26,0.08), rgba(20,20,20,0.9));
+  }
+
   /* Circuit Board Pattern */
   .bg-circuit {
     background-image: 
@@ -576,60 +597,11 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            <!-- Profile Page: Shawn Dullen -->
-            <div class="project-card group cursor-pointer" data-category="web automation">
-                <div class="relative overflow-hidden rounded-lg mb-4 h-64 bg-gradient-to-br from-slate to-graphite flex items-center justify-center border border-accent/20">
-                    <div class="text-center px-6">
-                        <div class="font-poppins font-black text-6xl text-accent/30 mb-2">SD</div>
-                        <p class="text-accent font-poppins font-bold uppercase tracking-widest text-xs">DTB Portfolio Profile</p>
-                    </div>
-                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
-                        <a href="/shawn" class="opacity-0 group-hover:opacity-100 transition duration-300 bg-accent text-charcoal px-6 py-2 rounded-md font-bold font-poppins">
-                            View Profile
-                        </a>
-                    </div>
-                </div>
-                <h3 class="text-xl font-poppins font-bold mb-2">Shawn Dullen</h3>
-                <p class="text-gray-400 text-sm mb-4">Founder and systems builder behind DTB. A business-first profile focused on web systems, Cloudflare deployment, automation workflows and operational execution.</p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="text-xs bg-graphite text-accent px-3 py-1 rounded-full">Founder Profile</span>
-                    <span class="text-xs bg-graphite text-accent px-3 py-1 rounded-full">Web Systems</span>
-                    <span class="text-xs bg-graphite text-accent px-3 py-1 rounded-full">Cloudflare</span>
-                    <span class="text-xs bg-graphite text-accent px-3 py-1 rounded-full">Automation</span>
-                </div>
-            </div>
-
-            <!-- Profile Page: Sage -->
-            <div class="project-card group cursor-pointer" data-category="web marketing">
-                <div class="relative overflow-hidden rounded-lg mb-4 h-64 bg-gradient-to-br from-slate to-graphite flex items-center justify-center border border-accent/20">
-                    <div class="text-center px-6">
-                        <div class="font-poppins font-black text-7xl text-accent/30 mb-2">S</div>
-                        <p class="text-accent font-poppins font-bold uppercase tracking-widest text-xs">DTB Portfolio Profile</p>
-                    </div>
-                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
-                        <a href="/sage" class="opacity-0 group-hover:opacity-100 transition duration-300 bg-accent text-charcoal px-6 py-2 rounded-md font-bold font-poppins">
-                            View Profile
-                        </a>
-                    </div>
-                </div>
-                <h3 class="text-xl font-poppins font-bold mb-2">Sage</h3>
-                <p class="text-gray-400 text-sm mb-4">Creative profile page reserved for brand presence, visual direction, social signal and future DTB collaboration details as they are confirmed.</p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="text-xs bg-graphite text-accent px-3 py-1 rounded-full">Creative Profile</span>
-                    <span class="text-xs bg-graphite text-accent px-3 py-1 rounded-full">Brand Presence</span>
-                    <span class="text-xs bg-graphite text-accent px-3 py-1 rounded-full">Social Signal</span>
-                    <span class="text-xs bg-graphite text-accent px-3 py-1 rounded-full">Placeholder Safe</span>
-                </div>
-            </div>
-
-
             <!-- Project 1: Neesh.art -->
             <div class="project-card group cursor-pointer" data-category="web">
-                <div class="relative overflow-hidden rounded-lg mb-4 h-64 bg-gradient-to-br from-slate to-graphite flex items-center justify-center">
-                    <div class="mb-4">
-                    <svg class="tech-icon" style="width: 96px; height: 96px;" viewBox="0 0 64 64"><use href="#icon-document"/></svg>
-                </div>
-                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
+                <div class="relative overflow-hidden rounded-lg mb-4 h-64 project-shot-frame group">
+                    <img src="/images/portfolio/neesh-art.webp" alt="Screenshot preview of the Neesh.art independent magazine marketplace" class="project-shot" loading="lazy">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/45 transition duration-300 flex items-center justify-center">
                         <a href="https://neesh.art" target="_blank" class="opacity-0 group-hover:opacity-100 transition duration-300 bg-accent text-charcoal px-6 py-2 rounded-md font-bold font-poppins">
                             Visit Site
                         </a>
@@ -647,11 +619,9 @@
 
             <!-- Project 2: Phonoteca.ro -->
             <div class="project-card group cursor-pointer" data-category="web">
-                <div class="relative overflow-hidden rounded-lg mb-4 h-64 bg-gradient-to-br from-slate to-graphite flex items-center justify-center">
-                    <div class="mb-4">
-                    <svg class="tech-icon" style="width: 96px; height: 96px;" viewBox="0 0 64 64"><use href="#icon-shopping"/></svg>
-                </div>
-                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
+                <div class="relative overflow-hidden rounded-lg mb-4 h-64 project-shot-frame group">
+                    <img src="/images/portfolio/phonoteca.webp" alt="Screenshot preview of the Phonoteca vinyl records e-commerce website" class="project-shot" loading="lazy">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/45 transition duration-300 flex items-center justify-center">
                         <a href="https://phonoteca.ro" target="_blank" class="opacity-0 group-hover:opacity-100 transition duration-300 bg-accent text-charcoal px-6 py-2 rounded-md font-bold font-poppins">
                             Visit Site
                         </a>
@@ -669,11 +639,9 @@
 
             <!-- Project 3: Nexus Marketing -->
             <div class="project-card group cursor-pointer" data-category="web marketing">
-                <div class="relative overflow-hidden rounded-lg mb-4 h-64 bg-gradient-to-br from-slate to-graphite flex items-center justify-center">
-                    <div class="mb-4">
-                    <svg class="tech-icon" style="width: 96px; height: 96px;" viewBox="0 0 64 64"><use href="#icon-partnership"/></svg>
-                </div>
-                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
+                <div class="relative overflow-hidden rounded-lg mb-4 h-64 project-shot-frame group">
+                    <img src="/images/portfolio/nexus-marketing.webp" alt="Screenshot preview of the Nexus Marketing B2B marketing website" class="project-shot" loading="lazy">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/45 transition duration-300 flex items-center justify-center">
                         <a href="https://nexusmarketing.com/" target="_blank" class="opacity-0 group-hover:opacity-100 transition duration-300 bg-accent text-charcoal px-6 py-2 rounded-md font-bold font-poppins">
                             Visit Site
                         </a>
@@ -735,11 +703,9 @@
 
             <!-- Project 6: UX Design & Prototyping -->
             <div class="project-card group cursor-pointer" data-category="web">
-                <div class="relative overflow-hidden rounded-lg mb-4 h-64 bg-gradient-to-br from-slate to-graphite flex items-center justify-center">
-                    <div class="mb-4">
-                    <svg class="tech-icon" style="width: 96px; height: 96px;" viewBox="0 0 64 64"><use href="#icon-design"/></svg>
-                </div>
-                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
+                <div class="relative overflow-hidden rounded-lg mb-4 h-64 project-shot-frame group">
+                    <img src="/images/portfolio/neesh-figma.webp" alt="Figma workspace preview for Neesh UX design and wireframing" class="project-shot" loading="lazy">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/45 transition duration-300 flex items-center justify-center">
                         <a href="https://www.figma.com/design/c7uXTDJe7rH32BLfRl6tS0/Neesh-01?node-id=0-1&p=f" target="_blank" class="opacity-0 group-hover:opacity-100 transition duration-300 bg-accent text-charcoal px-6 py-2 rounded-md font-bold font-poppins">
                             View Details
                         </a>
@@ -757,11 +723,9 @@
 
             <!-- Project 7: Ministry AI Hub -->
             <div class="project-card group cursor-pointer" data-category="automation">
-                <div class="relative overflow-hidden rounded-lg mb-4 h-64 bg-gradient-to-br from-slate to-graphite flex items-center justify-center">
-                    <div class="mb-4">
-                    <svg class="tech-icon" style="width: 96px; height: 96px;" viewBox="0 0 64 64"><use href="#icon-ai-agent"/></svg>
-                </div>
-                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
+                <div class="relative overflow-hidden rounded-lg mb-4 h-64 project-shot-frame group">
+                    <img src="/images/portfolio/ministry-ai-hub.webp" alt="GitHub repository preview for the Ministry AI Hub project" class="project-shot" loading="lazy">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/45 transition duration-300 flex items-center justify-center">
                         <a href="https://github.com/Sage-Nwanne/inbound_ministry_agent_system" target="_blank" class="opacity-0 group-hover:opacity-100 transition duration-300 bg-accent text-charcoal px-6 py-2 rounded-md font-bold font-poppins">
                             View Project
                         </a>
@@ -779,11 +743,9 @@
 
             <!-- Project 8: Biblical Bifocal Podcast -->
             <div class="project-card group cursor-pointer" data-category="marketing">
-                <div class="relative overflow-hidden rounded-lg mb-4 h-64 bg-gradient-to-br from-slate to-graphite flex items-center justify-center">
-                    <div class="mb-4">
-                    <svg class="tech-icon" style="width: 96px; height: 96px;" viewBox="0 0 64 64"><use href="#icon-social-media"/></svg>
-                </div>
-                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition duration-300 flex items-center justify-center">
+                <div class="relative overflow-hidden rounded-lg mb-4 h-64 project-shot-frame group">
+                    <img src="/images/portfolio/biblical-bifocal.webp" alt="Biblical Bifocal podcast banner preview" class="project-shot" loading="lazy">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/45 transition duration-300 flex items-center justify-center">
                         <a href="https://www.youtube.com/@biblicalbifocal/featured" target="_blank" class="opacity-0 group-hover:opacity-100 transition duration-300 bg-accent text-charcoal px-6 py-2 rounded-md font-bold font-poppins">
                             Visit Channel
                         </a>
