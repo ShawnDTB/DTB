@@ -3,7 +3,7 @@ export const siteHeader = `
   <div class="shell header-inner">
     <a class="brand" href="/" aria-label="Designed to Breakthrough home">
       <img src="/images/dtb-logo-transparent-full.png" alt="Designed to Breakthrough">
-      <span class="brand-context">Digital systems for growing teams</span>
+      <span class="brand-context">Web, systems and growth</span>
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
       <span></span><span></span><span></span>
@@ -26,12 +26,12 @@ export const siteFooter = `
   <div class="shell footer-grid">
     <div class="footer-brand">
       <img src="/images/dtb-logo-transparent-full.png" alt="Designed to Breakthrough">
-      <p>Web, automation, infrastructure and growth systems designed to help small teams operate with clarity and scale with control.</p>
+      <p>Websites, automation and business systems built to help companies grow with confidence.</p>
       <a href="mailto:inquire@dtbsolutions.tech">inquire@dtbsolutions.tech</a>
     </div>
     <div>
       <h2>Solutions</h2>
-      <a href="/services/#pricing">Transparent Pricing</a>
+      <a href="/services/#pricing">Pricing</a>
       <a href="/services/#web-brand">Web + Brand</a>
       <a href="/services/#automation-ai">Automation + AI</a>
       <a href="/services/#infrastructure">Infrastructure</a>
@@ -55,4 +55,5 @@ export const siteFooter = `
     <p>© 2026 Designed to Breakthrough LLC. All rights reserved.</p>
     <div><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
   </div>
-</footer>`;
+</footer>
+<script src="/assets/copy-refresh.js?v=20260728-1"></script>`;
