@@ -3,6 +3,7 @@ export const siteHeader = `
   <div class="shell header-inner">
     <a class="brand" href="/" aria-label="Designed to Breakthrough home">
       <img src="/images/dtb-logo-transparent-full.png" alt="Designed to Breakthrough">
+      <span class="brand-context">Digital systems for growing teams</span>
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
       <span></span><span></span><span></span>
