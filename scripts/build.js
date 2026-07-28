@@ -63,6 +63,7 @@ const requiredAssets = [
   "assets/icons.svg",
   "assets/site.js",
   "static/css/site.css",
+  "static/Images/DTB-banner-removebg-preview.png",
   "images/dtb-logo-transparent-full.png",
 ];
 
