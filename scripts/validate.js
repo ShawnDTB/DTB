@@ -12,13 +12,34 @@ function walk(directory) {
 }
 
 const htmlFiles = walk(root).filter((file) => file.endsWith(".html"));
+const stylesheetPath = join(root, "static/css/site.css");
 const legacyPatterns = [
   /static\/css\/dist\/styles\.css/i,
   /href="#"/i,
   /developer name/i,
   /\[placeholder\]/i,
   /trusted by business owners at companies like/i,
+  /DTB_logo\.png/i,
+  /DTB-banner-removebg-preview/i,
+  /brand-strike/i,
+  /circuit-wash/i,
+  /hero-grid/i,
 ];
+
+if (!existsSync(stylesheetPath)) {
+  failures.push("static/css/site.css: shared stylesheet missing");
+} else {
+  const stylesheet = readFileSync(stylesheetPath, "utf8");
+  const visualRegressionPatterns = [
+    [/background-repeat:\s*repeat/i, "tiled background treatment"],
+    [/logo-background-image-resized/i, "legacy raster background"],
+    [/brand-strike/i, "legacy headline strike effect"],
+  ];
+
+  for (const [pattern, label] of visualRegressionPatterns) {
+    if (pattern.test(stylesheet)) failures.push(`static/css/site.css: ${label} is still present`);
+  }
+}
 
 for (const file of htmlFiles) {
   const html = readFileSync(file, "utf8");
@@ -67,4 +88,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Validated ${htmlFiles.length} routes with a consistent shell and no missing local targets.`);
+console.log(`Validated ${htmlFiles.length} routes, shared shell, local targets, and DTB visual-regression rules.`);

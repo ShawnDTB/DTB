@@ -1,6 +1,5 @@
 export const siteHeader = `
 <header class="site-header" data-header>
-  <div class="circuit-wash" aria-hidden="true"></div>
   <div class="shell header-inner">
     <a class="brand" href="/" aria-label="Designed to Breakthrough home">
       <img src="/images/dtb-logo-transparent-full.png" alt="Designed to Breakthrough">

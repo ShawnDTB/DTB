@@ -125,17 +125,16 @@ li {
   left: 0;
   z-index: 100;
   width: 100%;
-  border-bottom: 1px solid rgba(242,173,36,.16);
-  background: linear-gradient(180deg, rgba(3,5,8,.99), rgba(7,9,13,.965));
-  box-shadow: 0 16px 44px rgba(0,0,0,.24);
-  backdrop-filter: blur(20px) saturate(115%);
+  border-bottom: 1px solid rgba(242,173,36,.24);
+  background: #030507;
+  box-shadow: 0 12px 34px rgba(0,0,0,.42);
   transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
 
 .site-header.scrolled {
-  border-color: rgba(242,173,36,.26);
-  background: rgba(3,5,8,.985);
-  box-shadow: 0 18px 50px rgba(0,0,0,.38);
+  border-color: rgba(242,173,36,.34);
+  background: #020305;
+  box-shadow: 0 16px 42px rgba(0,0,0,.52);
 }
 
 .header-inner {
@@ -154,7 +153,7 @@ li {
   width: clamp(210px, 19vw, 285px);
   max-height: 56px;
   object-fit: contain;
-  filter: drop-shadow(0 0 12px rgba(242,173,36,.12));
+  filter: saturate(1.08) contrast(1.06) drop-shadow(0 0 10px rgba(242,173,36,.1));
 }
 
 .site-nav {
@@ -236,12 +235,12 @@ li {
 .button-primary {
   background: linear-gradient(120deg, var(--orange), var(--gold));
   color: #0b0d10;
-  box-shadow: 0 14px 40px rgba(255,103,29,.18);
+  box-shadow: 0 10px 24px rgba(255,103,29,.18);
 }
 
 .button-primary:hover,
 .button-primary:focus-visible {
-  box-shadow: 0 18px 46px rgba(255,103,29,.32);
+  box-shadow: 0 12px 28px rgba(255,103,29,.24);
 }
 
 .button-secondary,
@@ -290,44 +289,9 @@ li {
   overflow: hidden;
   padding: 138px 0 78px;
   background:
-    radial-gradient(circle at 82% 28%, rgba(116,65,232,.045), transparent 25%),
-    radial-gradient(circle at 8% 42%, rgba(255,103,29,.13), transparent 28%),
-    linear-gradient(180deg, #07090d, #090d14);
-}
-
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  opacity: .1;
-  background-image:
-    linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
-  background-size: 62px 62px;
-  -webkit-mask-image: linear-gradient(to bottom, black, transparent 92%);
-  mask-image: linear-gradient(to bottom, black, transparent 92%);
-}
-
-.hero-glow {
-  position: absolute;
-  width: 340px;
-  height: 340px;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: .12;
-  pointer-events: none;
-}
-
-.hero-glow-orange {
-  top: 100px;
-  left: -180px;
-  background: var(--orange);
-}
-
-.hero-glow-purple {
-  right: -150px;
-  bottom: 20px;
-  background: var(--purple);
-  opacity: .065;
+    radial-gradient(ellipse 38% 52% at 98% 26%, rgba(116,65,232,.035), transparent 72%),
+    radial-gradient(ellipse 34% 48% at -5% 44%, rgba(255,103,29,.075), transparent 72%),
+    linear-gradient(180deg, #06080c, #090d14);
 }
 
 .hero-layout {
@@ -351,7 +315,6 @@ li {
 }
 
 .hero h1 em {
-  position: relative;
   color: var(--gold);
   font-style: normal;
 }
@@ -735,12 +698,10 @@ li {
   padding: clamp(26px, 5vw, 60px);
   border: 1px solid rgba(242,173,36,.18);
   border-radius: 28px;
-  background-image:
-    linear-gradient(rgba(242,173,36,.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(242,173,36,.045) 1px, transparent 1px),
-    linear-gradient(145deg, rgba(18,24,34,.96), rgba(8,12,18,.98));
-  background-size: 36px 36px, 36px 36px, 100% 100%;
-  background-repeat: repeat, repeat, no-repeat;
+  background:
+    radial-gradient(ellipse 38% 62% at 50% 48%, rgba(242,173,36,.055), transparent 72%),
+    linear-gradient(145deg, rgba(18,24,34,.98), rgba(8,12,18,.99));
+  background-repeat: no-repeat;
   box-shadow: 0 26px 68px rgba(0,0,0,.3), inset 0 1px rgba(255,255,255,.025);
 }
 
@@ -1075,24 +1036,20 @@ li {
 
 .partnership-circuit {
   position: absolute;
-  width: 300px;
-  height: 260px;
-  opacity: .18;
-  background-image:
-    linear-gradient(90deg, var(--orange) 1px, transparent 1px),
-    linear-gradient(var(--orange) 1px, transparent 1px);
-  background-size: 42px 42px;
-  -webkit-mask-image: radial-gradient(circle, black, transparent 70%);
-  mask-image: radial-gradient(circle, black, transparent 70%);
+  width: 340px;
+  height: 340px;
+  border: 1px solid rgba(242,173,36,.07);
+  border-radius: 50%;
+  opacity: .7;
+  box-shadow: 0 0 0 52px rgba(242,173,36,.018);
 }
 
-.circuit-left { bottom: -80px; left: -90px; }
+.circuit-left { bottom: -190px; left: -170px; }
 .circuit-right {
-  top: -70px;
-  right: -80px;
-  background-image:
-    linear-gradient(90deg, var(--purple-light) 1px, transparent 1px),
-    linear-gradient(var(--purple-light) 1px, transparent 1px);
+  top: -210px;
+  right: -170px;
+  border-color: rgba(116,65,232,.055);
+  box-shadow: 0 0 0 52px rgba(116,65,232,.012);
 }
 
 .partnership-layout {
@@ -1200,8 +1157,8 @@ li {
   width: 140%;
   height: 1px;
   background: linear-gradient(90deg, transparent 15%, var(--orange), var(--gold), var(--purple-light), transparent 85%);
-  box-shadow: 0 0 30px rgba(242,173,36,.7);
-  animation: beam 6s ease-in-out infinite;
+  box-shadow: 0 0 18px rgba(242,173,36,.34);
+  animation: none;
 }
 
 .site-footer {
@@ -1631,31 +1588,6 @@ li {
   }
 }
 
-/* Shared DTB shell and interior pages */
-.circuit-wash {
-  position: absolute;
-  inset: 0;
-  opacity: .42;
-  background-image:
-    linear-gradient(90deg, rgba(3,5,8,.96) 0%, rgba(3,5,8,.7) 35%, rgba(3,5,8,.72) 68%, rgba(3,5,8,.97) 100%),
-    url("/static/Images/logo-background-image-resized.png");
-  background-position: center, center 47%;
-  background-size: 100% 100%, min(1024px, 100vw) auto;
-  background-repeat: no-repeat, no-repeat;
-  filter: saturate(.9) contrast(1.08);
-  pointer-events: none;
-}
-
-.circuit-wash::after {
-  content: "";
-  position: absolute;
-  right: 5%;
-  bottom: 0;
-  left: 5%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,103,29,.22), rgba(242,173,36,.36), transparent);
-}
-
 .site-header .header-inner {
   position: relative;
   z-index: 2;
@@ -1671,6 +1603,14 @@ li {
 
 .nav-cta {
   color: #0b0d10 !important;
+  animation: none !important;
+  box-shadow: 0 8px 20px rgba(255,103,29,.16);
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.nav-cta:hover,
+.nav-cta:focus-visible {
+  box-shadow: 0 8px 20px rgba(255,103,29,.16);
 }
 
 .icon {
@@ -1697,22 +1637,22 @@ li {
 
 .map-core img {
   position: static;
-  width: 128px;
-  max-width: 128px;
+  width: 112px;
+  max-width: 112px;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 18px rgba(242,173,36,.18));
-  transform: translateY(-7px);
+  filter: drop-shadow(0 0 14px rgba(242,173,36,.16));
+  transform: translateY(-5px);
 }
 
 .outcome-mark img {
   position: static;
   left: auto;
-  width: 142px;
-  max-width: calc(100% - 22px);
+  width: 128px;
+  max-width: calc(100% - 30px);
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 18px rgba(242,173,36,.16));
+  filter: drop-shadow(0 0 14px rgba(242,173,36,.14));
 }
 
 .brand-signature::before {
@@ -1720,17 +1660,7 @@ li {
   width: 34px;
   height: 1px;
   background: linear-gradient(90deg, var(--orange), var(--gold));
-  box-shadow: 0 0 12px rgba(242,173,36,.7);
-}
-
-.brand-strike {
-  position: relative;
-  color: var(--gold);
-  text-shadow: 0 0 30px rgba(255,103,29,.14);
-}
-
-.brand-strike::after {
-  content: none;
+  box-shadow: none;
 }
 
 .page-hero {
@@ -1741,8 +1671,8 @@ li {
   overflow: hidden;
   padding: 158px 0 80px;
   background:
-    radial-gradient(circle at 84% 28%, rgba(116,65,232,.04), transparent 23%),
-    radial-gradient(circle at 10% 72%, rgba(255,103,29,.11), transparent 29%),
+    radial-gradient(ellipse 34% 58% at 94% 26%, rgba(116,65,232,.03), transparent 74%),
+    radial-gradient(ellipse 36% 58% at -4% 72%, rgba(255,103,29,.07), transparent 74%),
     #07090d;
 }
 
@@ -1750,13 +1680,11 @@ li {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: .28;
+  opacity: 1;
   background:
-    linear-gradient(rgba(242,173,36,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(242,173,36,.06) 1px, transparent 1px);
-  background-size: 54px 54px;
-  -webkit-mask-image: linear-gradient(to bottom, black, transparent);
-  mask-image: linear-gradient(to bottom, black, transparent);
+    linear-gradient(90deg, transparent 0 9%, rgba(242,173,36,.05) 9.05% 9.1%, transparent 9.15% 100%),
+    linear-gradient(90deg, transparent 0 74%, rgba(116,65,232,.035) 74.05% 74.1%, transparent 74.15% 100%);
+  background-repeat: no-repeat;
 }
 
 .page-hero::after {
@@ -2186,12 +2114,11 @@ li {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: .13;
-  background-image: url("/static/Images/logo-background-image-resized.png");
-  background-position: center 48%;
-  background-size: min(960px, 82vw) auto;
+  opacity: .7;
+  background:
+    radial-gradient(ellipse 28% 80% at 18% 50%, rgba(255,255,255,.1), transparent 72%),
+    linear-gradient(112deg, transparent 0 22%, rgba(9,11,15,.12) 22.05% 22.14%, transparent 22.2% 100%);
   background-repeat: no-repeat;
-  mix-blend-mode: multiply;
 }
 
 .breakthrough-band .brand-signature {
@@ -2558,12 +2485,10 @@ li {
   padding: 54px;
   border: 1px solid var(--line);
   border-radius: 24px;
-  background-color: rgba(255,255,255,.018);
-  background-image:
-    linear-gradient(rgba(242,173,36,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(242,173,36,.04) 1px, transparent 1px);
-  background-size: 38px 38px, 38px 38px;
-  background-repeat: repeat, repeat;
+  background:
+    radial-gradient(ellipse 44% 72% at 50% 100%, rgba(242,173,36,.055), transparent 74%),
+    linear-gradient(145deg, rgba(20,27,38,.72), rgba(8,12,18,.92));
+  background-repeat: no-repeat;
   text-align: center;
 }
 
