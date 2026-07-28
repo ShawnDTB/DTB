@@ -1,0 +1,36 @@
+name: Import DTB source
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/import-dtb-source.yml
+
+permissions:
+  contents: write
+
+jobs:
+  import-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy current DTB source safely
+        env:
+          TARGET_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git clone --depth 1 --branch code-polish https://github.com/Sage-Nwanne/DTB.git source
+          cd source
+          rm -rf .git
+          rm -f "public/static/documents/contracts/Client Services Agreement.pdf"
+          rm -f "public/static/documents/intake_scope/DTB Client Intake & Scope.pdf"
+          rm -f "public/static/documents/videos/Empowering-our-clients.mp4"
+          git init -b code-polish
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Import DTB code-polish source"
+          git remote add target "https://x-access-token:${GITHUB_TOKEN}@github.com/${TARGET_REPOSITORY}.git"
+          git push target code-polish --force
+          git branch homepage-redesign
+          git push target homepage-redesign --force
