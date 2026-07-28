@@ -65,6 +65,8 @@ const requiredAssets = [
   "static/css/site.css",
   "static/Images/dtb-mark.png",
   "static/Images/dtb-favicon.png",
+  "static/Images/dtb-header-circuit.png",
+  "static/Images/DTB-LOGO-BACKGROUND.png",
   "images/dtb-logo-transparent-full.png",
 ];
 

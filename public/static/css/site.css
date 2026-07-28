@@ -126,14 +126,23 @@ li {
   z-index: 100;
   width: 100%;
   border-bottom: 1px solid rgba(242,173,36,.24);
-  background: #030507;
+  background-color: #030507;
+  background-image:
+    linear-gradient(90deg, rgba(2,3,5,.9), rgba(2,3,5,.76) 50%, rgba(2,3,5,.9)),
+    url("/static/Images/dtb-header-circuit.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   box-shadow: 0 12px 34px rgba(0,0,0,.42);
-  transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
+  transition: border-color .25s ease, box-shadow .25s ease;
 }
 
 .site-header.scrolled {
   border-color: rgba(242,173,36,.34);
-  background: #020305;
+  background-color: #020305;
+  background-image:
+    linear-gradient(90deg, rgba(2,3,5,.94), rgba(2,3,5,.83) 50%, rgba(2,3,5,.94)),
+    url("/static/Images/dtb-header-circuit.png");
   box-shadow: 0 16px 42px rgba(0,0,0,.52);
 }
 
@@ -1253,9 +1262,9 @@ li {
   50% { height: 24px; }
 }
 
-@keyframes beam {
-  0%, 100% { transform: translateX(-12%); opacity: .35; }
-  50% { transform: translateX(12%); opacity: 1; }
+@keyframes circuit-drift {
+  from { background-position: center, center 49%; }
+  to { background-position: center, center 51%; }
 }
 
 @media (max-width: 1040px) {
@@ -2114,11 +2123,15 @@ li {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: .7;
-  background:
-    radial-gradient(ellipse 28% 80% at 18% 50%, rgba(255,255,255,.1), transparent 72%),
-    linear-gradient(112deg, transparent 0 22%, rgba(9,11,15,.12) 22.05% 22.14%, transparent 22.2% 100%);
+  opacity: .24;
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,.06), transparent 32%, rgba(9,11,15,.1)),
+    url("/static/Images/DTB-LOGO-BACKGROUND.png");
+  background-position: center, center 49%;
+  background-size: 100% 100%, max(1180px, 106vw) auto;
   background-repeat: no-repeat;
+  mix-blend-mode: multiply;
+  animation: circuit-drift 18s ease-in-out infinite alternate;
 }
 
 .breakthrough-band .brand-signature {
