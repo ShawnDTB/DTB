@@ -6,17 +6,17 @@ The DTB website presents web, automation, infrastructure and growth strategy as 
 
 - Signature: **Design. Transform. Breakthrough.**
 - Campaign line: **From foundation to flow.**
-- Visual language: charcoal, metallic gold, orange energy, restrained purple system signals, smoked glass and circuit traces
+- Visual language: black and charcoal foundations, dominant DTB orange, metallic-gold depth, restrained purple system signals, smoked glass and circuit traces
 - Content standard: public projects and attributable evidence without unsupported metrics or anonymous testimonials
 
 ## Routes
 
 - `/` — homepage
-- `/services/` — four connected service pillars and engagement paths
+- `/services/` — four connected service pillars, transparent pricing and engagement paths
 - `/works/` — public work, system concepts and clearly labeled capability examples
 - `/about/` — mission, operating principles and team
-- `/reviews/` — proof and delivery standards
-- `/blog/` — honest pre-launch Insights page and notification form
+- `/reviews/` — reviews, proof and delivery standards
+- `/blog/` — honest pre-launch blog and notification form
 - `/contact/` — project intake and FAQ
 - `/shawn/` — published team profile
 - `/privacy/` and `/terms/` — legal pages

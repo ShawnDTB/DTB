@@ -11,11 +11,11 @@ export const siteHeader = `
     </button>
     <nav class="site-nav" id="site-menu" aria-label="Primary navigation" data-menu>
       <a data-nav="services" href="/services/">Services</a>
+      <a href="/services/#pricing">Pricing</a>
       <a data-nav="works" href="/works/">Work</a>
       <a data-nav="about" href="/about/">About</a>
-      <a data-nav="reviews" href="/reviews/">Proof</a>
-      <a data-nav="blog" href="/blog/">Insights</a>
-      <a data-nav="contact" href="/contact/">Contact</a>
+      <a data-nav="reviews" href="/reviews/">Reviews</a>
+      <a data-nav="blog" href="/blog/">Blog</a>
       <a class="button button-small button-primary nav-cta" href="/contact/#project-form">Start a Project</a>
     </nav>
   </div>
@@ -31,6 +31,7 @@ export const siteFooter = `
     </div>
     <div>
       <h2>Solutions</h2>
+      <a href="/services/#pricing">Transparent Pricing</a>
       <a href="/services/#web-brand">Web + Brand</a>
       <a href="/services/#automation-ai">Automation + AI</a>
       <a href="/services/#infrastructure">Infrastructure</a>
@@ -40,8 +41,8 @@ export const siteFooter = `
       <h2>Company</h2>
       <a href="/works/">Work</a>
       <a href="/about/">About</a>
-      <a href="/reviews/">Proof</a>
-      <a href="/blog/">Insights</a>
+      <a href="/reviews/">Reviews</a>
+      <a href="/blog/">Blog</a>
       <a href="/contact/">Contact</a>
     </div>
     <div>
