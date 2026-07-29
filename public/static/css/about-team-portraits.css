@@ -1,0 +1,118 @@
+/* Leadership portrait treatment for the About page */
+.team-card-founder,
+.team-card-cofounder,
+.team-card-manager {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  padding: 0;
+}
+
+.team-portrait {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-bottom: 1px solid color-mix(in srgb, var(--leadership-accent) 32%, transparent);
+  background: #10151e;
+}
+
+.team-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 54%, rgba(6,10,15,.2) 76%, rgba(6,10,15,.66) 100%),
+    linear-gradient(90deg, rgba(6,10,15,.08), transparent 34%, transparent 66%, rgba(6,10,15,.08));
+}
+
+.team-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.92) contrast(1.03);
+  transition: transform .45s ease, filter .45s ease;
+}
+
+.team-card-founder:hover .team-portrait img,
+.team-card-cofounder:hover .team-portrait img {
+  transform: scale(1.025);
+  filter: saturate(1) contrast(1.04);
+}
+
+.team-portrait-placeholder {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255,103,29,.15), transparent 32%),
+    linear-gradient(145deg, rgba(25,31,42,.96), rgba(8,12,18,.98));
+}
+
+.team-portrait-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .28;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.team-portrait-placeholder .team-monogram {
+  position: relative;
+  z-index: 1;
+  width: 78px;
+  height: 78px;
+  margin: 0;
+  border-width: 1px;
+  font-size: 21px;
+  background: rgba(8,12,18,.68);
+  box-shadow: 0 0 36px rgba(255,103,29,.12);
+}
+
+.team-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 26px 30px 30px;
+}
+
+.team-card-content > span {
+  display: block;
+  min-height: 36px;
+}
+
+.team-card-content p {
+  margin-bottom: 0;
+}
+
+.team-card-content .text-link {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+@media (max-width: 900px) {
+  .team-portrait {
+    aspect-ratio: 16 / 9;
+  }
+
+  .team-card-content > span {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .team-portrait {
+    aspect-ratio: 4 / 3;
+  }
+
+  .team-card-content {
+    padding: 24px 26px 27px;
+  }
+}
