@@ -1,38 +1,137 @@
 (function () {
+  function loadStylesheet(href, dataAttribute) {
+    if (document.querySelector('link[' + dataAttribute + ']')) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    link.setAttribute(dataAttribute, "true");
+    document.head.appendChild(link);
+  }
+
+  loadStylesheet("/static/css/mobile-resilience.css?v=20260729-1", "data-mobile-resilience");
+
   const header = document.querySelector("[data-header]");
   const menu = document.querySelector("[data-menu]");
   const menuToggle = document.querySelector("[data-menu-toggle]");
+  const mobileQuery = window.matchMedia("(max-width: 900px)");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const saveData = Boolean(connection && connection.saveData);
+  const slowConnection = Boolean(connection && ["slow-2g", "2g"].includes(connection.effectiveType));
+  const performanceLite = mobileQuery.matches || reduceMotion || saveData || slowConnection;
   const params = new URLSearchParams(window.location.search);
   const sent = params.get("sent");
   const subscribed = params.get("subscribed");
   const error = params.get("error");
+  let menuLastFocus = null;
+
+  document.documentElement.classList.toggle("performance-lite", performanceLite);
 
   function updateHeader() {
     if (header) header.classList.toggle("scrolled", window.scrollY > 18);
   }
 
-  function closeMenu() {
+  function setBackgroundInert(isInert) {
+    if (!("inert" in HTMLElement.prototype)) return;
+    const main = document.querySelector("main");
+    const footer = document.querySelector("footer");
+    if (main) main.inert = isInert;
+    if (footer) footer.inert = isInert;
+  }
+
+  function focusableMenuItems() {
+    if (!menu) return [];
+    return Array.from(menu.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+  }
+
+  function syncClosedMenuAccessibility() {
+    if (!menu) return;
+    const isOpen = menu.classList.contains("open");
+    if (mobileQuery.matches) {
+      menu.setAttribute("aria-hidden", String(!isOpen));
+      if ("inert" in menu) menu.inert = !isOpen;
+    } else {
+      menu.removeAttribute("aria-hidden");
+      if ("inert" in menu) menu.inert = false;
+    }
+  }
+
+  function closeMenu(options) {
+    const settings = options || {};
     if (!menu || !menuToggle) return;
+    const wasOpen = menu.classList.contains("open");
     menu.classList.remove("open");
     menuToggle.setAttribute("aria-expanded", "false");
     document.body.classList.remove("menu-open");
+    setBackgroundInert(false);
+    syncClosedMenuAccessibility();
+
+    if (wasOpen && settings.restoreFocus && menuLastFocus) {
+      menuLastFocus.focus({ preventScroll: true });
+    }
+  }
+
+  function openMenu() {
+    if (!menu || !menuToggle) return;
+    menuLastFocus = document.activeElement;
+    menu.classList.add("open");
+    menuToggle.setAttribute("aria-expanded", "true");
+    document.body.classList.add("menu-open");
+    if ("inert" in menu) menu.inert = false;
+    menu.setAttribute("aria-hidden", "false");
+    setBackgroundInert(true);
+
+    window.requestAnimationFrame(function () {
+      const firstItem = focusableMenuItems()[0];
+      if (firstItem) firstItem.focus({ preventScroll: true });
+    });
   }
 
   if (menu && menuToggle) {
+    syncClosedMenuAccessibility();
+
     menuToggle.addEventListener("click", function () {
       const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-      menu.classList.toggle("open", !isOpen);
-      menuToggle.setAttribute("aria-expanded", String(!isOpen));
-      document.body.classList.toggle("menu-open", !isOpen);
+      if (isOpen) closeMenu({ restoreFocus: true });
+      else openMenu();
     });
 
     menu.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", closeMenu);
+      link.addEventListener("click", function () { closeMenu(); });
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (!menu.classList.contains("open")) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeMenu({ restoreFocus: true });
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const items = focusableMenuItems();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    document.addEventListener("pointerdown", function (event) {
+      if (!menu.classList.contains("open") || !header) return;
+      if (!header.contains(event.target)) closeMenu({ restoreFocus: true });
     });
 
     window.addEventListener("resize", function () {
       if (window.innerWidth > 900) closeMenu();
+      syncClosedMenuAccessibility();
     });
   }
 
@@ -45,8 +144,11 @@
   });
 
   const revealItems = document.querySelectorAll(".reveal");
-  if (reduceMotion || !("IntersectionObserver" in window)) {
-    revealItems.forEach(function (item) { item.classList.add("visible"); });
+  if (performanceLite || !("IntersectionObserver" in window)) {
+    revealItems.forEach(function (item) {
+      item.style.transitionDelay = "0ms";
+      item.classList.add("visible");
+    });
   } else {
     const observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -87,12 +189,7 @@
   if (formStarted) formStarted.value = String(Date.now());
 
   function loadCircuitStyles() {
-    if (document.querySelector('link[data-circuit-network]')) return;
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "/static/css/circuit-network.css?v=20260728-1";
-    link.dataset.circuitNetwork = "true";
-    document.head.appendChild(link);
+    loadStylesheet("/static/css/circuit-network.css?v=20260729-2", "data-circuit-network");
   }
 
   function circuitMarkup(index) {
@@ -130,6 +227,7 @@
   }
 
   function mountCircuitNetworks() {
+    if (performanceLite) return;
     loadCircuitStyles();
     const selectors = [
       ".tech-network-section",
@@ -152,5 +250,11 @@
     });
   }
 
-  mountCircuitNetworks();
+  if (!performanceLite) {
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(mountCircuitNetworks, { timeout: 1200 });
+    } else {
+      window.setTimeout(mountCircuitNetworks, 120);
+    }
+  }
 })();
