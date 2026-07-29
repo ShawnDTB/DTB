@@ -18,9 +18,7 @@ The DTB website presents web, automation, infrastructure and growth strategy as 
 - `/reviews/` — reviews, proof and delivery standards
 - `/blog/` — honest pre-launch blog and notification form
 - `/contact/` — project intake and FAQ
-- `/shawn/` — published team profile
 - `/privacy/` and `/terms/` — legal pages
-- `/sage/` and `/devs/` — no-index redirects to the team page until confirmed profile content is available
 
 ## Architecture
 
