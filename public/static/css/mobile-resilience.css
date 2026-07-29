@@ -128,6 +128,8 @@
   .partnership::after,
   .final-cta::before,
   .final-cta::after {
+    content: none !important;
+    display: none !important;
     animation: none !important;
     will-change: auto !important;
   }
