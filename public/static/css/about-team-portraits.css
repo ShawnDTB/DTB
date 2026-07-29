@@ -1,118 +1,57 @@
-/* Leadership portrait treatment for the About page */
+/* Circular leadership portraits inside the original About card layout */
 .team-card-founder,
 .team-card-cofounder,
 .team-card-manager {
-  display: flex;
+  display: block;
   min-height: 100%;
-  flex-direction: column;
+  padding: 30px;
+}
+
+.team-monogram-photo {
+  width: 72px;
+  height: 72px;
   padding: 0;
-}
-
-.team-portrait {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-bottom: 1px solid color-mix(in srgb, var(--leadership-accent) 32%, transparent);
   background: #10151e;
+  box-shadow:
+    0 0 0 4px rgba(8,12,18,.72),
+    0 0 28px color-mix(in srgb, var(--leadership-accent) 14%, transparent);
 }
 
-.team-portrait::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, transparent 54%, rgba(6,10,15,.2) 76%, rgba(6,10,15,.66) 100%),
-    linear-gradient(90deg, rgba(6,10,15,.08), transparent 34%, transparent 66%, rgba(6,10,15,.08));
-}
-
-.team-portrait img {
+.team-monogram-photo img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  filter: saturate(.92) contrast(1.03);
-  transition: transform .45s ease, filter .45s ease;
+  object-position: center 32%;
+  border-radius: inherit;
+  filter: saturate(.94) contrast(1.04);
+  transition: transform .35s ease, filter .35s ease;
 }
 
-.team-card-founder:hover .team-portrait img,
-.team-card-cofounder:hover .team-portrait img {
-  transform: scale(1.025);
-  filter: saturate(1) contrast(1.04);
+.team-card-founder .team-monogram-photo {
+  border-color: rgba(242,173,36,.68);
 }
 
-.team-portrait-placeholder {
-  display: grid;
-  place-items: center;
-  background:
-    radial-gradient(circle at 50% 45%, rgba(255,103,29,.15), transparent 32%),
-    linear-gradient(145deg, rgba(25,31,42,.96), rgba(8,12,18,.98));
+.team-card-cofounder .team-monogram-photo {
+  border-color: rgba(162,122,255,.66);
 }
 
-.team-portrait-placeholder::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: .28;
-  background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-  background-size: 34px 34px;
-}
-
-.team-portrait-placeholder .team-monogram {
-  position: relative;
-  z-index: 1;
-  width: 78px;
-  height: 78px;
-  margin: 0;
-  border-width: 1px;
-  font-size: 21px;
-  background: rgba(8,12,18,.68);
-  box-shadow: 0 0 36px rgba(255,103,29,.12);
-}
-
-.team-card-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  padding: 26px 30px 30px;
-}
-
-.team-card-content > span {
-  display: block;
-  min-height: 36px;
-}
-
-.team-card-content p {
-  margin-bottom: 0;
-}
-
-.team-card-content .text-link {
-  margin-top: auto;
-  padding-top: 18px;
-}
-
-@media (max-width: 900px) {
-  .team-portrait {
-    aspect-ratio: 16 / 9;
-  }
-
-  .team-card-content > span {
-    min-height: 0;
-  }
+.team-card-founder:hover .team-monogram-photo img,
+.team-card-cofounder:hover .team-monogram-photo img {
+  transform: scale(1.06);
+  filter: saturate(1) contrast(1.05);
 }
 
 @media (max-width: 560px) {
-  .team-portrait {
-    aspect-ratio: 4 / 3;
+  .team-card-founder,
+  .team-card-cofounder,
+  .team-card-manager {
+    padding: 26px;
   }
 
-  .team-card-content {
-    padding: 24px 26px 27px;
+  .team-monogram-photo {
+    width: 68px;
+    height: 68px;
   }
 }
