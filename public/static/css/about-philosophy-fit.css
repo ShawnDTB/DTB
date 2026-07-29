@@ -1,14 +1,14 @@
 /* Editorial About philosophy composition */
 .about-foundation {
-  padding-block: clamp(92px, 8vw, 132px);
+  padding-block: clamp(70px, 6vw, 96px);
 }
 
 .about-foundation-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  align-items: stretch;
-  column-gap: clamp(34px, 4.8vw, 72px);
-  row-gap: clamp(42px, 5vw, 66px);
+  align-items: start;
+  column-gap: clamp(32px, 4vw, 60px);
+  row-gap: clamp(30px, 3.6vw, 44px);
 }
 
 .about-philosophy-intro {
@@ -18,42 +18,45 @@
 }
 
 .about-philosophy-intro h2 {
-  max-width: 780px;
-  font-size: clamp(48px, 5.1vw, 76px);
+  max-width: 730px;
+  margin-bottom: 18px;
+  font-size: clamp(44px, 4.35vw, 64px);
+  line-height: .99;
 }
 
 .about-philosophy-lede {
-  max-width: 680px;
-  font-size: 18px;
+  max-width: 650px;
+  font-size: 17px;
+  line-height: 1.65;
 }
 
 .founder-origin-quote {
   grid-column: 8 / -1;
   grid-row: 1;
-  align-self: stretch;
+  align-self: start;
   display: flex;
   max-width: none;
-  min-height: 100%;
+  min-height: 0;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin: 0;
-  padding: 132px 34px 32px 38px;
+  padding: 92px 32px 28px 36px;
   border-left-width: 2px;
-  border-radius: 0 22px 22px 0;
+  border-radius: 0 20px 20px 0;
   background:
-    radial-gradient(circle at 88% 12%, rgba(242,173,36,.11), transparent 36%),
+    radial-gradient(circle at 88% 12%, rgba(242,173,36,.1), transparent 34%),
     linear-gradient(145deg, rgba(21,27,37,.9), rgba(8,12,18,.96));
-  box-shadow: 0 28px 70px rgba(0,0,0,.22);
+  box-shadow: 0 24px 58px rgba(0,0,0,.2);
 }
 
 .founder-origin-quote::after {
   content: "2020";
   position: absolute;
-  top: 26px;
+  top: 22px;
   left: 34px;
-  color: rgba(242,173,36,.09);
+  color: rgba(242,173,36,.085);
   font-family: "Poppins", sans-serif;
-  font-size: clamp(58px, 6vw, 88px);
+  font-size: clamp(50px, 5vw, 72px);
   font-weight: 800;
   letter-spacing: -.07em;
   line-height: 1;
@@ -62,12 +65,13 @@
 
 .founder-origin-quote > p {
   max-width: 520px;
-  font-size: 16px;
-  line-height: 1.8;
+  font-size: 15px;
+  line-height: 1.68;
 }
 
 .founder-origin-quote footer {
-  margin-top: 22px;
+  margin-top: 17px;
+  padding-top: 14px;
 }
 
 .about-philosophy-grid {
@@ -76,41 +80,41 @@
   grid-row: 2;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(20px, 2.2vw, 30px);
+  gap: clamp(18px, 2vw, 26px);
   margin-top: 0;
 }
 
 .about-philosophy-grid article {
   display: flex;
-  min-height: 330px;
+  min-height: 270px;
   flex-direction: column;
-  padding: clamp(32px, 3vw, 42px);
+  padding: clamp(28px, 2.4vw, 34px);
 }
 
 .about-philosophy-grid span {
-  margin-bottom: clamp(34px, 4vw, 52px);
+  margin-bottom: clamp(24px, 2.5vw, 32px);
 }
 
 .about-philosophy-grid h3,
 .about-philosophy-grid article:nth-child(3) h3 {
   max-width: 430px;
-  margin-bottom: 18px;
-  font-size: clamp(28px, 2.55vw, 38px);
+  margin-bottom: 14px;
+  font-size: clamp(26px, 2.1vw, 32px);
   letter-spacing: -.045em;
   line-height: 1.06;
 }
 
 .about-philosophy-grid p {
   max-width: 440px;
-  margin-bottom: 24px;
-  font-size: 15px;
-  line-height: 1.72;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.64;
 }
 
 .about-philosophy-grid article::after {
-  right: 38px;
-  bottom: 34px;
-  width: 58px;
+  right: 32px;
+  bottom: 26px;
+  width: 50px;
 }
 
 @media (max-width: 1080px) {
@@ -130,8 +134,8 @@
   }
 
   .founder-origin-quote {
-    min-height: 0;
-    padding-top: 112px;
+    max-width: 760px;
+    padding-top: 88px;
   }
 
   .about-philosophy-grid {
@@ -139,12 +143,12 @@
   }
 
   .about-philosophy-grid article {
-    min-height: 360px;
+    min-height: 290px;
   }
 
   .about-philosophy-grid h3,
   .about-philosophy-grid article:nth-child(3) h3 {
-    font-size: clamp(25px, 3vw, 32px);
+    font-size: clamp(24px, 3vw, 30px);
   }
 }
 
@@ -158,26 +162,26 @@
   }
 
   .about-philosophy-grid span {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
 
   .about-philosophy-grid h3,
   .about-philosophy-grid article:nth-child(3) h3 {
-    font-size: clamp(27px, 7vw, 36px);
+    font-size: clamp(27px, 7vw, 34px);
   }
 }
 
 @media (max-width: 560px) {
   .about-foundation {
-    padding-block: 76px;
+    padding-block: 62px;
   }
 
   .about-philosophy-intro h2 {
-    font-size: clamp(42px, 13vw, 58px);
+    font-size: clamp(40px, 12vw, 54px);
   }
 
   .founder-origin-quote {
-    padding: 100px 24px 26px 27px;
+    padding: 82px 24px 24px 27px;
   }
 
   .founder-origin-quote::after {
