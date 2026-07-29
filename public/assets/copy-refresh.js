@@ -110,4 +110,12 @@
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute("content", description);
   }
+
+  if (path === "/about/" || path === "/about") {
+    const leadershipStyles = document.createElement("link");
+    leadershipStyles.rel = "stylesheet";
+    leadershipStyles.href = "/static/css/about-team-cards.css?v=20260729-1";
+    leadershipStyles.dataset.aboutTeamCards = "true";
+    document.head.appendChild(leadershipStyles);
+  }
 })();
