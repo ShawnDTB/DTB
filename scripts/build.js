@@ -63,6 +63,7 @@ const requiredAssets = [
   "assets/icons.svg",
   "assets/site.js",
   "static/css/site.css",
+  "static/css/mobile-resilience.css",
   "static/Images/dtb-mark.png",
   "static/Images/dtb-favicon.png",
   "static/Images/dtb-header-circuit.png",
@@ -82,7 +83,8 @@ for (const htmlFile of walk(distDir).filter((file) => extname(file) === ".html")
   const source = readFileSync(htmlFile, "utf8");
   const rendered = source
     .replace(/[ \t]*<!-- DTB_HEADER -->/, `\n${siteHeader}`)
-    .replace(/[ \t]*<!-- DTB_FOOTER -->/, `\n${siteFooter}`);
+    .replace(/[ \t]*<!-- DTB_FOOTER -->/, `\n${siteFooter}`)
+    .replace(/\/assets\/site\.js\?v=[^"']+/g, "/assets/site.js?v=20260729-mobile1");
 
   if (rendered.includes("<!-- DTB_HEADER -->") || rendered.includes("<!-- DTB_FOOTER -->")) {
     console.error(`Build failed: shell placeholder was not rendered in ${relative(distDir, htmlFile)}`);
