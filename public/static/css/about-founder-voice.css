@@ -1,0 +1,45 @@
+/* Founder-led About philosophy copy */
+.about-philosophy-copy {
+  display: grid;
+  max-width: 760px;
+  gap: 14px;
+}
+
+.about-philosophy-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.about-philosophy-signature {
+  max-width: 760px;
+  margin: 26px 0 0 !important;
+  padding-left: 18px;
+  border-left: 2px solid var(--gold);
+  color: #eef0f4 !important;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px !important;
+  font-weight: 600;
+  line-height: 1.65 !important;
+}
+
+.about-philosophy-grid article {
+  min-height: 340px;
+}
+
+.about-philosophy-grid p {
+  font-size: 13.5px;
+}
+
+@media (max-width: 1040px) {
+  .about-philosophy-grid article {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .about-philosophy-copy p {
+    font-size: 16px;
+  }
+}
