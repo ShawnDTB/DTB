@@ -1,80 +1,150 @@
-/* About page mission, values and journey refinement */
+/* About page philosophy, values and journey refinement */
 .about-foundation-grid {
   display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(520px, 1.1fr);
-  gap: clamp(52px, 7vw, 100px);
-  align-items: center;
+  gap: 34px;
 }
 
-.about-mission {
-  max-width: 650px;
+.about-philosophy-intro {
+  max-width: 920px;
 }
 
-.about-mission h2 {
+.about-philosophy-intro .eyebrow {
+  margin-bottom: 14px;
+}
+
+.about-philosophy-mark {
+  margin-bottom: 18px;
+  color: var(--gold);
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(17px, 2vw, 24px);
+  font-weight: 700;
+  letter-spacing: .035em;
+}
+
+.about-philosophy-intro h2 {
+  max-width: 860px;
   margin-bottom: 22px;
-  font-size: clamp(38px, 4.2vw, 62px);
+  font-size: clamp(40px, 4.7vw, 68px);
 }
 
-.about-mission > p:not(.eyebrow) {
-  max-width: 610px;
-  margin-bottom: 15px;
+.about-philosophy-intro > p:last-child {
+  max-width: 760px;
+  margin: 0;
   color: var(--muted);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.75;
 }
 
-.about-mission .about-signature {
-  margin-top: 26px;
-  padding-left: 18px;
-  border-left: 2px solid var(--gold);
-  color: #e2e6ed;
-  font-family: "Poppins", sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.about-values {
+.about-philosophy-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 22px;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 82% 14%, rgba(242,173,36,.06), transparent 34%),
-    rgba(8,12,18,.76);
-  box-shadow: 0 24px 64px rgba(0,0,0,.18);
-}
-
-.about-values article {
-  display: grid;
-  min-height: 158px;
-  grid-template-columns: 42px 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-  padding: 28px;
-  border-right: 1px solid rgba(255,255,255,.08);
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  margin-top: 16px;
 }
 
-.about-values article:nth-child(2n) { border-right: 0; }
-.about-values article:nth-last-child(-n + 2) { border-bottom: 0; }
+.about-philosophy-grid article {
+  position: relative;
+  min-height: 268px;
+  padding: 32px;
+  overflow: hidden;
+  border: 1px solid rgba(242,173,36,.2);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(242,173,36,.08), transparent 32%),
+    linear-gradient(145deg, rgba(20,27,38,.9), rgba(8,12,18,.95));
+  box-shadow: 0 24px 58px rgba(0,0,0,.18);
+}
 
-.about-values span {
+.about-philosophy-grid article:nth-child(2) {
+  border-color: rgba(162,122,255,.28);
+  background:
+    radial-gradient(circle at 88% 10%, rgba(116,65,232,.1), transparent 32%),
+    linear-gradient(145deg, rgba(20,27,38,.9), rgba(8,12,18,.95));
+}
+
+.about-philosophy-grid article:nth-child(3) {
+  border-color: rgba(255,103,29,.26);
+  background:
+    radial-gradient(circle at 88% 10%, rgba(255,103,29,.09), transparent 32%),
+    linear-gradient(145deg, rgba(20,27,38,.9), rgba(8,12,18,.95));
+}
+
+.about-philosophy-grid article::after {
+  content: "";
+  position: absolute;
+  right: 30px;
+  bottom: 26px;
+  width: 42px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  opacity: .48;
+}
+
+.about-philosophy-grid article:nth-child(2)::after {
+  background: linear-gradient(90deg, var(--purple-light), transparent);
+}
+
+.about-philosophy-grid article:nth-child(3)::after {
+  background: linear-gradient(90deg, var(--orange), transparent);
+}
+
+.about-philosophy-grid span {
+  display: block;
+  margin-bottom: 34px;
   color: var(--gold);
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: .12em;
+  letter-spacing: .14em;
+  text-transform: uppercase;
 }
 
-.about-values h3 {
-  margin-bottom: 8px;
-  font-size: 20px;
+.about-philosophy-grid article:nth-child(2) span { color: var(--purple-light); }
+.about-philosophy-grid article:nth-child(3) span { color: #ff8a47; }
+
+.about-philosophy-grid h3 {
+  max-width: 360px;
+  margin-bottom: 14px;
+  font-size: clamp(22px, 2vw, 29px);
 }
 
-.about-values p {
+.about-philosophy-grid p {
+  max-width: 390px;
   margin: 0;
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 14px;
+  line-height: 1.72;
+}
+
+.about-values-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 2px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 18px;
+  background: rgba(6,10,15,.74);
+}
+
+.about-values-strip article {
+  display: grid;
+  min-height: 112px;
+  align-content: center;
+  gap: 7px;
+  padding: 24px 28px;
+  border-right: 1px solid rgba(255,255,255,.08);
+}
+
+.about-values-strip article:last-child { border-right: 0; }
+
+.about-values-strip strong {
+  color: #f5f6f8;
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+}
+
+.about-values-strip span {
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .journey-block {
@@ -180,7 +250,14 @@
 }
 
 @media (max-width: 1040px) {
-  .about-foundation-grid,
+  .about-philosophy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-philosophy-grid article {
+    min-height: 0;
+  }
+
   .journey-block {
     grid-template-columns: 1fr;
   }
@@ -192,22 +269,24 @@
 }
 
 @media (max-width: 760px) {
-  .about-values {
-    grid-template-columns: 1fr;
+  .about-philosophy-intro > p:last-child {
+    font-size: 16px;
   }
 
-  .about-values article {
-    min-height: 0;
+  .about-philosophy-grid article {
+    padding: 27px;
+  }
+
+  .about-values-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about-values-strip article:nth-child(2) {
     border-right: 0;
-    border-bottom: 1px solid rgba(255,255,255,.08);
   }
 
-  .about-values article:nth-last-child(-n + 2) {
+  .about-values-strip article:nth-child(-n + 2) {
     border-bottom: 1px solid rgba(255,255,255,.08);
-  }
-
-  .about-values article:last-child {
-    border-bottom: 0;
   }
 
   .journey-block {
@@ -232,5 +311,21 @@
 
   .journey-timeline article::before {
     left: -26px;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-values-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .about-values-strip article,
+  .about-values-strip article:nth-child(2) {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+
+  .about-values-strip article:last-child {
+    border-bottom: 0;
   }
 }
