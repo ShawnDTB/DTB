@@ -30,8 +30,8 @@
 .team-card-manager {
   --leadership-accent: var(--orange);
   --leadership-glow: rgba(255,103,29,.1);
-  --leadership-watermark: rgba(255,103,29,.046);
-  border-color: rgba(255,103,29,.38);
+  --leadership-watermark: rgba(255,103,29,.05);
+  border-color: rgba(255,103,29,.4);
 }
 
 .team-card-founder::after,
@@ -52,13 +52,7 @@
 
 .team-card-founder::after { content: "FOUNDER"; }
 .team-card-cofounder::after { content: "CO-FOUNDER"; }
-.team-card-manager::after {
-  content: "PROJECT MANAGER";
-  right: -12px;
-  bottom: -10px;
-  font-size: clamp(39px, 3.75vw, 58px);
-  letter-spacing: -.075em;
-}
+.team-card-manager::after { content: "MANAGER"; }
 
 .team-card-founder > *,
 .team-card-cofounder > *,
@@ -114,10 +108,6 @@
   .team-card-cofounder::after,
   .team-card-manager::after {
     font-size: clamp(38px, 10vw, 62px);
-  }
-
-  .team-card-manager::after {
-    font-size: clamp(34px, 8.8vw, 54px);
   }
 }
 
