@@ -43,11 +43,7 @@
     radial-gradient(circle at 82% 26%, rgba(116, 65, 232, .04), transparent 24%);
 }
 
-/*
- * Keep the 1440 × 720 artwork at its native 2:1 ratio at every breakpoint.
- * The SVG is centered and cropped like background-size: cover instead of being
- * stretched to the section's changing width and height.
- */
+/* Preserve the original 1440 x 720 artwork ratio and crop instead of stretch. */
 .circuit-network svg {
   position: absolute;
   top: 50%;
@@ -76,10 +72,9 @@
 }
 
 /*
- * Every route now has one packet per path. Durations are proportional to each
- * path's measured length, so all four packets travel at the same visual speed.
- * Removing the SVG blur filter eliminates the most expensive continuously
- * repainted effect while the brighter core stroke still reads as illuminated.
+ * One packet travels each route. Route durations remain proportional to path
+ * length so every color moves at the same apparent speed. The phase offsets
+ * are scaled by the same factor as the durations, keeping node impacts synced.
  */
 .circuit-network .circuit-signal {
   stroke-width: 2.35;
@@ -91,22 +86,22 @@
 
 .circuit-network .signal-a {
   stroke-dasharray: 24 2152;
-  animation: circuit-signal-a 8.70s linear infinite;
+  animation: circuit-signal-a 14.36s linear infinite;
 }
 
 .circuit-network .signal-b {
   stroke-dasharray: 24 2220;
-  animation: circuit-signal-b 8.98s linear infinite -2.6s;
+  animation: circuit-signal-b 14.82s linear infinite -4.29s;
 }
 
 .circuit-network .signal-c {
   stroke-dasharray: 24 2518;
-  animation: circuit-signal-c 10.17s linear infinite -5.1s;
+  animation: circuit-signal-c 16.78s linear infinite -8.42s;
 }
 
 .circuit-network .signal-d {
   stroke-dasharray: 24 1984;
-  animation: circuit-signal-d 8.03s linear infinite -3.8s;
+  animation: circuit-signal-d 13.25s linear infinite -6.27s;
 }
 
 .circuit-network .circuit-node {
@@ -132,25 +127,24 @@
   will-change: transform, opacity;
 }
 
-/* Node positions are measured from the beginning of their matching route. */
 .circuit-network .node-a {
-  animation: circuit-node-a 8.70s linear infinite;
+  animation: circuit-node-a 14.36s linear infinite;
 }
 
 .circuit-network .node-b {
   fill: rgba(162, 122, 255, .98);
   stroke: rgba(220, 208, 255, .98);
-  animation: circuit-node-b 8.98s linear infinite -2.6s;
+  animation: circuit-node-b 14.82s linear infinite -4.29s;
 }
 
 .circuit-network .node-c {
-  animation: circuit-node-c 10.17s linear infinite -5.1s;
+  animation: circuit-node-c 16.78s linear infinite -8.42s;
 }
 
 .circuit-network .node-d {
   fill: rgba(162, 122, 255, .98);
   stroke: rgba(220, 208, 255, .98);
-  animation: circuit-node-d 8.03s linear infinite -3.8s;
+  animation: circuit-node-d 13.25s linear infinite -6.27s;
 }
 
 .circuit-network > .circuit-ambient {
@@ -184,6 +178,24 @@
 .final-cta .circuit-network { --circuit-opacity: .27; }
 .partnership .circuit-network { --circuit-opacity: .23; }
 
+/*
+ * Keep the reviews section height unchanged while the native details control
+ * opens. The copy occupies its final space at all times and only visibility
+ * changes, so the background canvas never resizes or appears to zoom.
+ */
+.testimonial-disclosure > p {
+  display: block;
+  min-height: 48px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+
+.testimonial-disclosure[open] > p {
+  visibility: visible;
+  opacity: 1;
+}
+
 @keyframes circuit-signal-a {
   0% { stroke-dashoffset: 24; opacity: 0; }
   2% { opacity: 1; }
@@ -212,10 +224,7 @@
   100% { stroke-dashoffset: -1984; opacity: 0; }
 }
 
-/*
- * Impact peaks match the measured path progress:
- * A 26.01%, B 48.93%, C 57.83%, D 48.41%.
- */
+/* Impact peaks match measured progress along each matching route. */
 @keyframes circuit-node-a {
   0%, 24.9%, 27.4%, 100% { opacity: .1; transform: scale(.72); }
   26.01% { opacity: 1; transform: scale(1.72); }
@@ -253,7 +262,6 @@
     --circuit-opacity: .2;
   }
 
-  /* Mobile keeps the original circuit geometry as a quiet static texture. */
   .circuit-network .circuit-signal,
   .circuit-network .circuit-node-live,
   .circuit-network > .circuit-ambient {
@@ -271,5 +279,9 @@
   .circuit-network .circuit-node-live {
     display: none;
     animation: none !important;
+  }
+
+  .testimonial-disclosure > p {
+    transition: none;
   }
 }
