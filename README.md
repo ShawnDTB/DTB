@@ -1,90 +1,178 @@
-# Designed to Breakthrough Website
+# Designed To Breakthrough
 
-The DTB website presents web, automation, infrastructure and growth strategy as one connected digital-systems offering for small teams and growing organizations.
+The official website repository for **Designed To Breakthrough LLC (DTB Solutions)**.
 
-## Brand direction
+DTB builds practical digital systems for small businesses, creators, and growing organizations—bringing websites, automation, infrastructure, support, and growth strategy together under one connected service model.
 
-- Signature: **Design. Transform. Breakthrough.**
-- Campaign line: **From foundation to flow.**
-- Visual language: black and charcoal foundations, dominant DTB orange, metallic-gold depth, restrained purple system signals, smoked glass and circuit traces
-- Content standard: public projects and attributable evidence without unsupported metrics or anonymous testimonials
+> **Design. Transform. Breakthrough.**  
+> From foundation to flow.
 
-## Routes
+## Project status
 
-- `/` — homepage
-- `/services/` — four connected service pillars, transparent pricing and engagement paths
-- `/works/` — public work, system concepts and clearly labeled capability examples
-- `/about/` — mission, operating principles and team
-- `/reviews/` — reviews, proof and delivery standards
-- `/blog/` — honest pre-launch blog and notification form
-- `/contact/` — project intake and FAQ
-- `/privacy/` and `/terms/` — legal pages
+This repository contains the current production website and is the primary source of truth for ongoing DTB website development.
 
-## Architecture
+- **Repository:** `ShawnDTB/DTB`
+- **Primary branch:** `main`
+- **Production site:** [dtbsolutions.tech](https://www.dtbsolutions.tech)
+- **Deployment target:** Cloudflare Workers with static assets
+- **Current release:** Post-redesign production architecture
 
-Source pages live in `public/`. The build copies them into `dist/` and injects the shared header and footer from `scripts/templates.js`.
+The earlier DTB website remains preserved separately in the historical repository maintained by Sage Nwanne.
+
+## Brand and product direction
+
+The site is designed to communicate DTB as a connected digital-systems partner rather than a collection of disconnected technical services.
+
+### Core positioning
+
+- Web design and development
+- Business automation and workflow improvement
+- Computer, network, and infrastructure support
+- Hosting, maintenance, and technical operations
+- Content, visibility, and digital growth support
+
+### Visual language
+
+- Black and charcoal foundations
+- Signature DTB orange
+- Metallic-gold depth
+- Restrained purple system accents
+- Smoked-glass surfaces
+- Circuit, grid, and motion-inspired details
+
+### Content standard
+
+The site prioritizes transparency and attributable proof. Testimonials, project examples, metrics, and claims should only be published when they can be verified and appropriately credited.
+
+## Site routes
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Homepage and primary conversion path |
+| `/services/` | Connected service pillars, pricing context, and engagement options |
+| `/works/` | Public work, system concepts, and labeled capability examples |
+| `/about/` | Company mission, operating principles, and team |
+| `/reviews/` | Client feedback, proof, and delivery standards |
+| `/blog/` | DTB insights and newsletter signup |
+| `/contact/` | Project intake, contact form, and FAQ |
+| `/privacy/` | Privacy policy |
+| `/terms/` | Terms and conditions |
+
+## Technology
+
+The project uses a lightweight custom static-site build rather than a large frontend framework.
+
+- Semantic HTML
+- Shared CSS and JavaScript assets
+- Node.js build and validation scripts
+- Cloudflare Workers
+- Wrangler
+- Resend for transactional email and optional audience management
+
+## Repository structure
 
 ```text
-public/
-  assets/
-    icons.svg
-    site.js
-  static/css/
-    site.css
-  */index.html
-scripts/
-  build.js
-  templates.js
-  validate.js
-src/
-  worker.js
+.
+├── public/
+│   ├── assets/
+│   │   ├── icons.svg
+│   │   └── site.js
+│   ├── static/
+│   │   └── css/
+│   │       └── site.css
+│   └── */index.html
+├── scripts/
+│   ├── build.js
+│   ├── templates.js
+│   └── validate.js
+├── src/
+│   └── worker.js
+├── package.json
+└── README.md
 ```
 
-The shared shell is represented in source HTML with:
+Source pages live in `public/`. During the build, they are copied into `dist/` and receive the shared site shell from `scripts/templates.js`.
+
+Individual source pages use these placeholders:
 
 ```html
 <!-- DTB_HEADER -->
 <!-- DTB_FOOTER -->
 ```
 
-Do not hand-copy the navigation or footer into individual pages.
+The shared navigation and footer should be changed in the template system rather than copied manually into each page.
 
 ## Local development
 
+### Requirements
+
+- Node.js 20 or newer recommended
+- npm
+- A Cloudflare account for Worker preview and deployment
+
+### Install
+
 ```bash
-npm install
+ git clone https://github.com/ShawnDTB/DTB.git
+ cd DTB
+ npm install
+```
+
+### Start the local development server
+
+```bash
 npm run dev
 ```
 
-Useful commands:
+The development command builds the static site and starts a local Wrangler server.
+
+## Available commands
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Build and run the site locally with Wrangler |
+| `npm run build` | Generate the production-ready `dist/` output |
+| `npm run check` | Build and run repository validation checks |
+| `npm run preview` | Build and preview the Worker locally |
+| `npm run deploy` | Build and deploy to Cloudflare Workers |
+
+Before committing or deploying substantial changes, run:
 
 ```bash
-npm run build
 npm run check
-npm run preview
-npm run deploy
 ```
 
-`npm run check` builds the site and validates:
+The validation process checks for:
 
-- all expected routes and shared assets
-- shared header, footer and stylesheet usage
-- local links, assets and fragment targets
-- absence of known legacy placeholders and dead-link patterns
+- Expected routes and shared assets
+- Shared header, footer, and stylesheet usage
+- Broken local links and missing assets
+- Invalid fragment targets
+- Known legacy placeholders
+- Dead-link patterns
 
-## Contact and Insights forms
+## Forms and Worker routes
 
-The Cloudflare Worker handles:
+The Cloudflare Worker processes contact and newsletter submissions through the following routes:
 
-- `POST /api/contact`
-- `POST /contact`
-- `POST /api/newsletter`
-- `POST /newsletter`
-- `POST /blog`
+```text
+POST /api/contact
+POST /contact
+POST /api/newsletter
+POST /newsletter
+POST /blog
+```
 
-The forms include honeypot and submission-timing checks. The Worker also validates email format and field lengths.
+Form protection includes:
 
-Cloudflare environment variables:
+- Honeypot fields
+- Minimum submission timing checks
+- Email-format validation
+- Field-length validation
+
+## Environment variables
+
+Configure these values in the Cloudflare Worker environment:
 
 ```text
 RESEND_API_KEY
@@ -93,23 +181,61 @@ CONTACT_FROM_EMAIL
 RESEND_AUDIENCE_ID
 ```
 
-`RESEND_AUDIENCE_ID` is optional. When configured, Insights signups are saved to the Resend audience. Otherwise DTB receives an internal signup notification.
+`RESEND_AUDIENCE_ID` is optional. When present, Insights subscribers are added to the configured Resend audience. Without it, DTB receives an internal signup notification instead.
+
+Do not commit production keys, secrets, or private customer information to the repository.
 
 ## Deployment
 
-The site is deployed as a Cloudflare Worker with static assets from `dist/`.
+Run the complete validation process first:
 
 ```bash
 npm run check
+```
+
+Then deploy:
+
+```bash
 npm run deploy
 ```
 
-Oversized source assets are excluded by the build when they exceed Cloudflare Workers' asset limit.
+The build excludes oversized source assets when they exceed Cloudflare Workers' asset limits.
 
-## Content safeguards
+## Development workflow
 
-- Publish testimonials only after the client approves the quote and attribution.
-- Label client work, system concepts and capability examples distinctly.
-- Do not add performance percentages or client counts without supporting records.
-- Keep unpublished team profiles no-indexed until the biography and public links are confirmed.
-- Have legal pages reviewed before production use when business terms change.
+The recommended workflow is:
+
+1. Create a focused branch from `main`.
+2. Make and test the change locally.
+3. Run `npm run check`.
+4. Review responsive behavior and forms.
+5. Open a pull request or merge only after validation.
+6. Deploy from the approved production state.
+
+Suggested branch naming:
+
+```text
+feature/short-description
+fix/short-description
+content/short-description
+chore/short-description
+```
+
+## Content and trust safeguards
+
+- Publish testimonials only with client approval and clear attribution.
+- Clearly distinguish completed client work from concepts or capability demonstrations.
+- Do not publish unsupported performance percentages, customer totals, or savings claims.
+- Keep incomplete team profiles unpublished or no-indexed.
+- Review legal content whenever services, pricing, data handling, or business terms change.
+- Never expose customer credentials, private correspondence, or infrastructure secrets.
+
+## Ownership
+
+Designed To Breakthrough LLC is founded and led by **Shawn Dullen**.
+
+This repository is maintained under the `ShawnDTB` GitHub account as the active DTB website codebase.
+
+## License and reuse
+
+Unless a separate license is added, the code, written content, visual identity, brand assets, and business materials in this repository remain proprietary to Designed To Breakthrough LLC. Public repository visibility does not grant permission to reuse DTB branding or client materials.
