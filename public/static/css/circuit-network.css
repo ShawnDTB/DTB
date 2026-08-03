@@ -20,12 +20,13 @@
 }
 
 .circuit-network {
-  --circuit-opacity: .46;
-  --circuit-trace: rgba(242, 173, 36, .16);
-  --circuit-purple: rgba(162, 122, 255, .13);
+  --circuit-opacity: .44;
+  --circuit-trace: rgba(242, 173, 36, .15);
+  --circuit-purple: rgba(162, 122, 255, .12);
   position: absolute;
   inset: 0;
   z-index: 0;
+  contain: paint;
   overflow: hidden;
   pointer-events: none;
   opacity: var(--circuit-opacity);
@@ -38,111 +39,132 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 18% 68%, rgba(255, 103, 29, .055), transparent 22%),
-    radial-gradient(circle at 82% 26%, rgba(116, 65, 232, .045), transparent 24%);
+    radial-gradient(circle at 18% 68%, rgba(255, 103, 29, .05), transparent 22%),
+    radial-gradient(circle at 82% 26%, rgba(116, 65, 232, .04), transparent 24%);
 }
 
+/*
+ * Keep the 1440 × 720 artwork at its native 2:1 ratio at every breakpoint.
+ * The SVG is centered and cropped like background-size: cover instead of being
+ * stretched to the section's changing width and height.
+ */
 .circuit-network svg {
   position: absolute;
-  inset: -4% -2%;
-  width: 104%;
-  height: 108%;
-  overflow: visible;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  min-width: 100%;
+  height: 100%;
+  min-height: 50vw;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+}
+
+.circuit-network .circuit-trace,
+.circuit-network .circuit-signal {
+  fill: none;
+  vector-effect: non-scaling-stroke;
 }
 
 .circuit-network .circuit-trace {
-  fill: none;
   stroke: var(--circuit-trace);
-  stroke-width: 1.15;
-  vector-effect: non-scaling-stroke;
+  stroke-width: 1.1;
 }
 
 .circuit-network .circuit-trace-purple {
   stroke: var(--circuit-purple);
 }
 
+/*
+ * Every route now has one packet per path. Durations are proportional to each
+ * path's measured length, so all four packets travel at the same visual speed.
+ * Removing the SVG blur filter eliminates the most expensive continuously
+ * repainted effect while the brighter core stroke still reads as illuminated.
+ */
 .circuit-network .circuit-signal {
-  fill: none;
-  stroke: url(#dtbCircuitGold);
-  stroke-width: 2.25;
+  stroke-width: 2.35;
   stroke-linecap: round;
-  stroke-dasharray: 18 620;
-  vector-effect: non-scaling-stroke;
-  filter: url(#dtbCircuitGlow);
-  animation: circuit-signal 7.2s linear infinite;
+  opacity: 0;
+  filter: none !important;
+  will-change: stroke-dashoffset, opacity;
 }
 
-.circuit-network .circuit-signal-purple {
-  stroke: url(#dtbCircuitPurple);
-  animation-duration: 9.4s;
+.circuit-network .signal-a {
+  stroke-dasharray: 24 2152;
+  animation: circuit-signal-a 8.70s linear infinite;
 }
 
-.circuit-network .signal-b { animation-delay: -2.6s; }
-.circuit-network .signal-c { animation-delay: -5.1s; }
-.circuit-network .signal-d { animation-delay: -3.8s; }
+.circuit-network .signal-b {
+  stroke-dasharray: 24 2220;
+  animation: circuit-signal-b 8.98s linear infinite -2.6s;
+}
+
+.circuit-network .signal-c {
+  stroke-dasharray: 24 2518;
+  animation: circuit-signal-c 10.17s linear infinite -5.1s;
+}
+
+.circuit-network .signal-d {
+  stroke-dasharray: 24 1984;
+  animation: circuit-signal-d 8.03s linear infinite -3.8s;
+}
 
 .circuit-network .circuit-node {
   fill: #090d13;
-  stroke: rgba(242, 173, 36, .42);
-  stroke-width: 1.2;
+  stroke: rgba(242, 173, 36, .4);
+  stroke-width: 1.15;
   vector-effect: non-scaling-stroke;
 }
 
 .circuit-network .circuit-node-purple {
-  stroke: rgba(162, 122, 255, .42);
+  stroke: rgba(162, 122, 255, .4);
 }
 
 .circuit-network .circuit-node-live {
-  fill: rgba(242, 173, 36, .95);
-  stroke: rgba(255, 230, 164, .95);
+  fill: rgba(242, 173, 36, .98);
+  stroke: rgba(255, 230, 164, .98);
+  stroke-width: 1;
+  opacity: .1;
+  transform: scale(.72);
   transform-box: fill-box;
   transform-origin: center;
-  opacity: .12;
-  transform: scale(.72);
-  filter: url(#dtbCircuitGlow);
+  filter: none !important;
+  will-change: transform, opacity;
 }
 
-/*
- * Each pulse is aligned to the signal packet's actual distance along its path.
- * The packet repeats every 638 SVG units (18 visible + 620 gap), so each node
- * receives its own keyframe rather than sharing an approximate global timing.
- */
+/* Node positions are measured from the beginning of their matching route. */
 .circuit-network .node-a {
-  animation: circuit-node-a 7.2s linear infinite;
+  animation: circuit-node-a 8.70s linear infinite;
 }
 
 .circuit-network .node-b {
-  fill: rgba(162, 122, 255, .95);
-  stroke: rgba(214, 198, 255, .95);
-  animation: circuit-node-b 9.4s linear infinite;
-  animation-delay: -2.6s;
+  fill: rgba(162, 122, 255, .98);
+  stroke: rgba(220, 208, 255, .98);
+  animation: circuit-node-b 8.98s linear infinite -2.6s;
 }
 
 .circuit-network .node-c {
-  animation: circuit-node-c 7.2s linear infinite;
-  animation-delay: -5.1s;
+  animation: circuit-node-c 10.17s linear infinite -5.1s;
 }
 
 .circuit-network .node-d {
-  fill: rgba(162, 122, 255, .95);
-  stroke: rgba(214, 198, 255, .95);
-  animation: circuit-node-d 9.4s linear infinite;
-  animation-delay: -3.8s;
+  fill: rgba(162, 122, 255, .98);
+  stroke: rgba(220, 208, 255, .98);
+  animation: circuit-node-d 8.03s linear infinite -3.8s;
 }
 
 .circuit-network > .circuit-ambient {
   position: absolute;
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
   background: var(--gold);
-  opacity: .28;
-  box-shadow: 0 0 14px rgba(242, 173, 36, .55);
+  opacity: .22;
 }
 
 .circuit-ambient.a { top: 24%; left: 13%; }
 .circuit-ambient.b { top: 71%; left: 36%; }
-.circuit-ambient.c { top: 34%; right: 17%; background: var(--purple-light); box-shadow: 0 0 14px rgba(162, 122, 255, .5); }
+.circuit-ambient.c { top: 34%; right: 17%; background: var(--purple-light); }
 
 .tech-network-section > .shell,
 .team-section > .shell,
@@ -155,63 +177,99 @@
   z-index: 1;
 }
 
-.services .circuit-network { --circuit-opacity: .58; }
-.team-section .circuit-network { --circuit-opacity: .38; }
-.testimonial-section .circuit-network { --circuit-opacity: .34; }
+.services .circuit-network { --circuit-opacity: .52; }
+.team-section .circuit-network { --circuit-opacity: .35; }
+.testimonial-section .circuit-network { --circuit-opacity: .31; }
 .breakthrough-band .circuit-network,
-.final-cta .circuit-network { --circuit-opacity: .3; }
-.partnership .circuit-network { --circuit-opacity: .26; }
+.final-cta .circuit-network { --circuit-opacity: .27; }
+.partnership .circuit-network { --circuit-opacity: .23; }
 
-@keyframes circuit-signal {
-  from { stroke-dashoffset: 0; opacity: 0; }
-  8% { opacity: 1; }
-  96% { opacity: 1; }
-  to { stroke-dashoffset: -638; opacity: 0; }
+@keyframes circuit-signal-a {
+  0% { stroke-dashoffset: 24; opacity: 0; }
+  2% { opacity: 1; }
+  97% { opacity: 1; }
+  100% { stroke-dashoffset: -2152; opacity: 0; }
 }
 
+@keyframes circuit-signal-b {
+  0% { stroke-dashoffset: 24; opacity: 0; }
+  2% { opacity: 1; }
+  97% { opacity: 1; }
+  100% { stroke-dashoffset: -2220; opacity: 0; }
+}
+
+@keyframes circuit-signal-c {
+  0% { stroke-dashoffset: 24; opacity: 0; }
+  2% { opacity: 1; }
+  97% { opacity: 1; }
+  100% { stroke-dashoffset: -2518; opacity: 0; }
+}
+
+@keyframes circuit-signal-d {
+  0% { stroke-dashoffset: 24; opacity: 0; }
+  2% { opacity: 1; }
+  97% { opacity: 1; }
+  100% { stroke-dashoffset: -1984; opacity: 0; }
+}
+
+/*
+ * Impact peaks match the measured path progress:
+ * A 26.01%, B 48.93%, C 57.83%, D 48.41%.
+ */
 @keyframes circuit-node-a {
-  0%, 85.5%, 92%, 100% { opacity: .12; transform: scale(.72); }
-  88.7% { opacity: 1; transform: scale(1.7); }
-  90.2% { opacity: .68; transform: scale(1); }
+  0%, 24.9%, 27.4%, 100% { opacity: .1; transform: scale(.72); }
+  26.01% { opacity: 1; transform: scale(1.72); }
+  26.75% { opacity: .58; transform: scale(1.04); }
 }
 
 @keyframes circuit-node-b {
-  0%, 68.8%, 75.4%, 100% { opacity: .12; transform: scale(.72); }
-  72.1% { opacity: 1; transform: scale(1.7); }
-  73.6% { opacity: .68; transform: scale(1); }
+  0%, 47.8%, 50.3%, 100% { opacity: .1; transform: scale(.72); }
+  48.93% { opacity: 1; transform: scale(1.72); }
+  49.67% { opacity: .58; transform: scale(1.04); }
 }
 
 @keyframes circuit-node-c {
-  0%, 27.1%, 33.7%, 100% { opacity: .12; transform: scale(.72); }
-  30.4% { opacity: 1; transform: scale(1.7); }
-  31.9% { opacity: .68; transform: scale(1); }
+  0%, 56.7%, 59.2%, 100% { opacity: .1; transform: scale(.72); }
+  57.83% { opacity: 1; transform: scale(1.72); }
+  58.57% { opacity: .58; transform: scale(1.04); }
 }
 
 @keyframes circuit-node-d {
-  0%, 49.1%, 55.7%, 100% { opacity: .12; transform: scale(.72); }
-  52.4% { opacity: 1; transform: scale(1.7); }
-  53.9% { opacity: .68; transform: scale(1); }
+  0%, 47.3%, 49.8%, 100% { opacity: .1; transform: scale(.72); }
+  48.41% { opacity: 1; transform: scale(1.72); }
+  49.15% { opacity: .58; transform: scale(1.04); }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .circuit-network {
-    --circuit-opacity: .31;
+    --circuit-opacity: .32;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
   }
+}
 
-  .circuit-network svg {
-    left: -28%;
-    width: 156%;
+@media (max-width: 760px) {
+  .circuit-network {
+    --circuit-opacity: .2;
+  }
+
+  /* Mobile keeps the original circuit geometry as a quiet static texture. */
+  .circuit-network .circuit-signal,
+  .circuit-network .circuit-node-live,
+  .circuit-network > .circuit-ambient {
+    display: none;
+    animation: none !important;
+  }
+
+  .circuit-network .circuit-trace {
+    stroke-width: .9;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .circuit-network .circuit-signal,
   .circuit-network .circuit-node-live {
-    animation: none;
+    display: none;
+    animation: none !important;
   }
-
-  .circuit-network .circuit-signal { opacity: .28; }
-  .circuit-network .circuit-node-live { opacity: .38; transform: none; }
 }
